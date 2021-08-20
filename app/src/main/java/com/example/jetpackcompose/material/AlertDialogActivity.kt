@@ -3,8 +3,6 @@ package com.example.jetpackcompose.material
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.AlertDialog
 import androidx.compose.material.Button
@@ -18,6 +16,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
@@ -36,7 +36,13 @@ class AlertDialogActivity : AppCompatActivity() {
             // Column is a composable that places its children in a vertical sequence. We should
             // think of composable functions to be similar to lego blocks - each composable
             // function is in turn built up of smaller composable functions
-            Column {
+            Column (
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
                 // Here, ClickableText is a @Composable function which is going to describe the
                 // contents of this activity that will be rendered on the screen.
                 ClickableText()
@@ -73,7 +79,7 @@ fun ClickableText() {
         // 8dp to the Card composable and 16dp to the Text composable.
         Card(
             shape = RoundedCornerShape(4.dp), modifier = Modifier.padding(8.dp),
-            backgroundColor = Color.LightGray
+            backgroundColor = Color.Red
         ) {
             // The Text composable is pre-defined by the Compose UI library; you can use this
             // composable to render text on the screen

@@ -3,9 +3,6 @@ package com.example.jetpackcompose.material
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
@@ -17,6 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
@@ -35,7 +34,11 @@ class ButtonActivity : AppCompatActivity() {
             // modify the composable that its applied to. In the example below, we configure the
             // column to occupy the entire available height & width using the Modifier.fillMaxSize()
             // modifier.
-            Column(modifier = Modifier.fillMaxSize()) {
+            Column(modifier = Modifier.fillMaxSize()
+                    .fillMaxHeight(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally)
+            {
                 SimpleButtonComponent()
                 SimpleButtonWithBorderComponent()
                 RoundedCornerButtonComponent()
@@ -87,7 +90,7 @@ fun SimpleButtonWithBorderComponent() {
         modifier = Modifier.padding(16.dp),
         elevation = ButtonDefaults.elevation(5.dp),
         // Provide a border for this button
-        border = BorderStroke(width = 5.dp, brush = SolidColor(Color.Black))
+        border = BorderStroke(width = 5.dp, brush = SolidColor(Color.Gray))
     ) {
         // The Button composable allows you to provide child composables that inherit this button
         // functionality.

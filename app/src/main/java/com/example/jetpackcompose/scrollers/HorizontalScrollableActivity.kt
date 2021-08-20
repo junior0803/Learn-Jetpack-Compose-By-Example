@@ -28,6 +28,10 @@ import com.example.jetpackcompose.core.colors
 import com.example.jetpackcompose.core.getPersonList
 import com.example.jetpackcompose.image.TitleComponent
 
+
+
+
+
 class HorizontalScrollableActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,11 +43,15 @@ class HorizontalScrollableActivity : AppCompatActivity() {
             // Column is a composable that places its children in a vertical sequence. We should
             // think of composable functions to be similar to lego blocks - each composable
             // function is in turn built up of smaller composable functions
-            Column {
+            Column (
+                verticalArrangement = Arrangement.Center
+            )
+            {
                 // Title Component is a custom composable that we created which is capable of
                 // rendering text on the screen in a certain font style & text size.
                 TitleComponent("Horizontal Scrollable Carousel")
                 HorizontalScrollableComponent(getPersonList())
+
 
                 TitleComponent(
                     "Horizontal Scrolling Carousel where each item occupies the" +

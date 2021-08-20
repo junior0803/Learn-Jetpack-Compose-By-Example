@@ -220,7 +220,7 @@ fun CustomStyledText(displayText: String, style: TextStyle? = null, maxLines: In
     )
     // A pre-defined composable that renders a thin line on the screen that makes it easy to
     // group contents
-    Divider(color = Color.Gray)
+    Divider(color = Color.Black)
 }
 
 /**
@@ -239,11 +239,11 @@ fun CustomStyledTextPreview() {
         "This is preview text",
         maxLines = 2,
         style = TextStyle(
-            color = Color.Red,
+            color = Color.Green,
             fontWeight = FontWeight.W900,
             fontStyle = FontStyle.Italic,
             fontFamily = FontFamily.Serif,
-            fontSize = 20.sp,
+            fontSize = 40.sp,
             textAlign = TextAlign.Justify
         )
     )

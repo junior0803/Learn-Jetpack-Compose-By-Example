@@ -12,6 +12,7 @@
         android:orientation="vertical"
         android:padding="@dimen/default_padding">
 
+        <!--
         <androidx.cardview.widget.CardView
             android:id="@+id/simple_text_example"
             android:layout_width="match_parent"
@@ -29,6 +30,7 @@
                 android:layout_gravity="center"
                 android:fontFamily="monospace" />
         </androidx.cardview.widget.CardView>
+        -->
 
         <androidx.cardview.widget.CardView
             android:id="@+id/custom_text_example"
@@ -146,7 +148,7 @@
                 android:fontFamily="monospace" />
         </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
+        <!--<androidx.cardview.widget.CardView
             android:id="@+id/load_drawer_example"
             android:layout_width="match_parent"
             android:layout_height="@dimen/cardview_height"
@@ -163,7 +165,7 @@
                 android:textColor="@color/white"
                 android:layout_gravity="center"
                 android:fontFamily="monospace" />
-        </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>-->
 
         <androidx.cardview.widget.CardView
             android:id="@+id/load_button_example"
@@ -602,7 +604,7 @@
                 android:fontFamily="monospace" />
         </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
+        <!--<androidx.cardview.widget.CardView
             android:id="@+id/load_compose_classic_android_example"
             android:layout_width="match_parent"
             android:layout_height="@dimen/cardview_height"
@@ -619,7 +621,7 @@
                 android:textColor="@color/white"
                 android:layout_gravity="center"
                 android:fontFamily="monospace" />
-        </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>-->
 
         <androidx.cardview.widget.CardView
             android:id="@+id/load_back_press_example"

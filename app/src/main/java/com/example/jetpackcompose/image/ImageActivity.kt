@@ -19,14 +19,10 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.graphics.nativeCanvas
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.sizeIn
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.mutableStateOf
@@ -120,6 +116,7 @@ fun LocalResourceImageComponent(@DrawableRes resId: Int) {
         modifier = Modifier
             .sizeIn(maxHeight = 200.dp)
             .fillMaxWidth()
+            .clip(CircleShape)
     )
 }
 
@@ -145,7 +142,10 @@ fun ImageWithRoundedCorners(@DrawableRes resId: Int) {
         // Image is a pre-defined composable that lays out and draws a given [ImageBitmap].
         Image(
             painter = image,
-            modifier = Modifier.height(200.dp),
+            modifier = Modifier
+                .sizeIn(maxHeight = 200.dp)
+                .fillMaxWidth()
+                .clip(CircleShape),
             contentDescription = null
         )
     }
@@ -212,7 +212,12 @@ fun NetworkImageComponentPicasso(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             // Image is a pre-defined composable that lays out and draws a given [ImageBitmap].
-            Image(bitmap = theImage, contentDescription = null)
+            Image(bitmap = theImage, contentDescription = null,
+                modifier = Modifier
+                    .sizeIn(maxHeight = 200.dp)
+                    .fillMaxWidth()
+                    .clip(CircleShape)
+            )
         }
     } else if (theDrawable != null) {
         // We use the Canvas composable that gives you access to a canvas that you can draw
@@ -249,7 +254,7 @@ fun NetworkImageComponentGlide(
     var drawable by remember { mutableStateOf<Drawable?>(null) }
     val sizeModifier = modifier
         .fillMaxWidth()
-        .sizeIn(maxHeight = 200.dp)
+        .clip(CircleShape)
 
     // LocalContext is a LocalComposition for accessting the context value that we are used to using
     // in Android.
@@ -306,7 +311,12 @@ fun NetworkImageComponentGlide(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             // Image is a pre-defined composable that lays out and draws a given [ImageBitmap].
-            Image(bitmap = theImage, contentDescription = null)
+            Image(bitmap = theImage, contentDescription = null,
+                modifier = Modifier
+                    .sizeIn(maxHeight = 200.dp)
+                    .fillMaxWidth()
+                    .clip(CircleShape)
+            )
         }
     } else if (theDrawable != null) {
         // We use the Canvas composable that gives you access to a canvas that you can draw

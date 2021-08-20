@@ -59,6 +59,7 @@ fun BackPressApp(appState: AppState) {
         CurrentScreen.SCREEN1 -> Screen1(appState)
         CurrentScreen.SCREEN2 -> Screen2(appState)
         CurrentScreen.SCREEN3 -> Screen3(appState)
+        CurrentScreen.SCREEN4 -> Screen4(appState)
     }
 }
 
@@ -147,11 +148,52 @@ fun Screen2(appState: AppState) {
 }
 
 // We represent a Composable function by annotating it with the @Composable annotation. Composable
+// functions can only be called from within the scope of other composable functions. We should
+// think of composable functions to be similar to lego blocks - each composable function is in turn
+// built up of smaller composable functions.
+@Composable
+fun Screen3(appState: AppState) {
+    // Column is a composable that places its children in a vertical sequence. You
+    // can think of it similar to a LinearLayout with the vertical orientation.
+    // In addition we also pass a few modifiers to it.
+
+    // You can think of Modifiers as implementations of the decorators pattern that are used to
+    // modify the composable that its applied to. In this example, as the Column composable to
+    // occupy the entire available height & width using Modifier.fillMaxSize().
+    Column(
+        modifier = Modifier.fillMaxSize().padding(16.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        // TitleComponent is a composable we created in one of the files that merely renders
+        // text on the screen.
+        TitleComponent(title = "This is Screen 3")
+        // Button is a pre-defined Material Design implementation of a contained button -
+        // https://material.io/design/components/buttons.html#contained-button.
+        Button(
+            colors = ButtonDefaults.buttonColors(backgroundColor = Color.Gray),
+            onClick = {
+                appState.currentScreen = CurrentScreen.SCREEN4
+            }) {
+            TitleComponent(title = "Go To Screen 4")
+        }
+        TitleComponent(title = "Press back to go to Screen 2")
+    }
+    // BackButtonHandler is a custom composable we created to handle back press based on the
+    // context of our app. Since we are currently in Screen 2, pressing back should take you to
+    // Screen 1. So that's exactly what we do in the lambda that we pass to the BackButtonHandler
+    // composable. Take a look at it to understand how that is implemented.
+    BackButtonHandler {
+        appState.currentScreen = CurrentScreen.SCREEN2
+    }
+}
+
+// We represent a Composable function by annotating it with the @Composable annotation. Composable
 // functions can only be called from within the scope of other composable functions. We should 
 // think of composable functions to be similar to lego blocks - each composable function is in turn 
 // built up of smaller composable functions.
 @Composable
-fun Screen3(appState: AppState) {
+fun Screen4(appState: AppState) {
     // Column is a composable that places its children in a vertical sequence. You
     // can think of it similar to a LinearLayout with the vertical orientation. 
     // In addition we also pass a few modifiers to it.
@@ -166,17 +208,17 @@ fun Screen3(appState: AppState) {
     ) {
         // TitleComponent is a composable we created in one of the files that merely renders 
         // text on the screen. 
-        TitleComponent(title = "This is Screen 3")
+        TitleComponent(title = "This is Screen 4")
         // TitleComponent is a composable we created in one of the files that merely renders 
         // text on the screen. 
-        TitleComponent(title = "You can only go back from here. Press back to go to Screen 2.")
+        TitleComponent(title = "You can only go back from here. Press back to go to Screen 3.")
     }
     // BackButtonHandler is a custom composable we created to handle back press based on the 
     // context of our app. Since we are currently in Screen 3, pressing back should take you to 
     // Screen 2. So that's exactly what we do in the lambda that we pass to the BackButtonHandler
     // composable. Take a look at it to understand how that is implemented.
     BackButtonHandler {
-        appState.currentScreen = CurrentScreen.SCREEN2
+        appState.currentScreen = CurrentScreen.SCREEN3
     }
 }
 
@@ -188,5 +230,6 @@ class AppState {
 enum class CurrentScreen {
     SCREEN1,
     SCREEN2,
-    SCREEN3
+    SCREEN3,
+    SCREEN4
 }

@@ -49,7 +49,7 @@ fun FlowComponent(flow: Flow<Int>) {
     // any time the value changes. This ensures that only the composables that depend on this
     // will be redraw while the rest remain unchanged. This ensures efficiency and is a
     // performance optimization. It is inspired from existing frameworks like React.
-    val countDownValue by flow.collectAsState(initial = 10)
+    val countDownValue by flow.collectAsState(initial = 20)
     // Column is a composable that places its children in a vertical sequence. You
     // can think of it similar to a LinearLayout with the vertical orientation. 
     // In addition we also pass a few modifiers to it.
@@ -65,7 +65,7 @@ fun FlowComponent(flow: Flow<Int>) {
     ) {
         when (countDownValue) {
             // When the value is between 1 to 10, show the countDownValue 
-            in 1..10 -> {
+            in 1..20 -> {
                 CountdownText("Countdown: $countDownValue")
             }
             // Else it's already new year, so its time to wish your friends! 
@@ -102,8 +102,8 @@ fun CountdownText(text: String, color: Color = Color.Black) {
 // version of RxJava's observables/flowables. If you aren't familiar with RxJava either, think of
 // them as an open stream that notifies its observers when the value changes. 
 fun countdownFlow() = flow<Int> {
-    for (i in 9 downTo 0) {
-        delay(1000L)
+    for (i in 20 downTo 0) {
+        delay(2000L)
         emit(i)
     }
 }
